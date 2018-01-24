@@ -11,28 +11,21 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.threadminions.model.ConfigProperty;
-import com.threadminions.service.DatabaseRepository;
 import com.threadminions.service.EmployeeServiceLayer;
 
-@SpringBootApplication(exclude = { DataSourceTransactionManagerAutoConfiguration.class,
-		DataSourceAutoConfiguration.class })
-@EnableScheduling
-public class SpringBootConfig implements CommandLineRunner {
+@SpringBootApplication(exclude = { DataSourceTransactionManagerAutoConfiguration.class, DataSourceAutoConfiguration.class })
+public class SpringBootConfig implements CommandLineRunner 
+{
 	@Autowired
 	EmployeeServiceLayer employeeService;
-
-	@Autowired
-	DatabaseRepository databaseRepository;
 
 	@Bean(destroyMethod = "")
 	public DataSource dataSource(ConfigProperty configProperty) 
 	{
 		String url = "";
 		String password = configProperty.getPassword();
-		String username = configProperty.getUsername();
 		String dbType = configProperty.getDbType();
 		String driverClassName = "";
 		if ("mysql".equalsIgnoreCase(dbType)) {
@@ -58,6 +51,5 @@ public class SpringBootConfig implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		employeeService.printEmployees();
-		databaseRepository.printDBCPConnectionDetails();
 	}
 }

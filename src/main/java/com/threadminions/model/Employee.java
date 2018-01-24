@@ -1,7 +1,7 @@
 package com.threadminions.model;
 
-public class Employee {
-
+public class Employee 
+{
 	private int empId;
 	private String employeeName;
 	private String employeeDesignation;

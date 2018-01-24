@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:application.properties")
 public class ConfigProperty {
 
-	@Value("${url}")
-	private String url;
-
 	@Value("${username}")
 	private String username;
 
@@ -81,14 +78,6 @@ public class ConfigProperty {
 
 	public void setInitialSize(int initialSize) {
 		this.initialSize = initialSize;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	public String getUsername() {
